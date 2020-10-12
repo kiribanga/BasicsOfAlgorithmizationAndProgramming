@@ -7,7 +7,7 @@
 и нужна для малого количества строк в main
 */
 template <typename T> void printMemorySize();
-void printMemorySize ();
+void printMemorySize();
 
 //Функция принимает переменную целого, вещественного одинарной или двойной точности
 void printMemoryShowing(double);
@@ -27,17 +27,17 @@ int main()
 	std::cout << "\nВведите целое число\n";
 	std::cin >> userNumberI;
 	printMemoryShowing(userNumberI);
-	
+
 	//пункт 3 задания, для быстрой сборки числа считываются клавиатуры
 	std::cout << "\nВведите вещественное число типа float\n";
 	std::cin >> userNumberF;
 	printMemoryShowing(userNumberF);
-	
+
 	//пункт 4 задания, для быстрой сборки числа считываются клавиатуры
 	std::cout << "\nВведите вещественное число типа double\n";
 	std::cin >> userNumberD;
 	printMemoryShowing(userNumberD);
-	
+
 	return 0;
 }
 
@@ -62,15 +62,15 @@ void printMemorySize()
 	ведь имея тип данных можно получить его имя в виде строки
 	*/
 	T t;
-	switch (sizeof(T)%10)
+	switch (sizeof(T) % 10)
 	{
-		case 2:
-		case 3:
-		case 4:
-			std::cout << "Размер "<< typeid(t).name() <<" = " << sizeof(T) << " байта\n";
-			break;
-		default:
-			std::cout << "Размер "<< typeid(t).name() <<" = " << sizeof(T) << " байт\n";
+	case 2:
+	case 3:
+	case 4:
+		std::cout << "Размер " << typeid(t).name() << " = " << sizeof(T) << " байта\n";
+		break;
+	default:
+		std::cout << "Размер " << typeid(t).name() << " = " << sizeof(T) << " байт\n";
 	}
 }
 
@@ -115,7 +115,7 @@ void printMemoryShowing(float value)
 	{
 		std::cout << (valueI & mask ? '1' : '0');
 		mask >>= 1;
-		if ((i == 0)||(i==8))
+		if ((i == 0) || (i == 8))
 			std::cout << ' ';
 	}
 	std::cout << '\n';
@@ -137,7 +137,7 @@ void printMemoryShowing(double value)
 	};
 	valueD = value;
 	unsigned long long mask = 9223372036854775808;
-	for (int i = 0;i < 32;i++)
+	for (int i = 0;i < 64;i++)
 	{
 		std::cout << (valueLL & mask ? '1' : '0');
 		mask >>= 1;
