@@ -378,7 +378,7 @@ void userSwap(int* arr) {
 	std::cout << "Перестановка элементов массива. Введите индексы через пробел\n";
 	while (true) {
 		std::cin >> a >> b;
-		if (std::cin)
+		if ((std::cin)&&(a>=0)&&(b>=0)&&(b<100)&&(a<100))
 			break;
 		std::cout << "Вы неправильно ввели пару чисел. Повторите ввод\n";
 		std::cin.clear();
