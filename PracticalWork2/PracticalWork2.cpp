@@ -2,7 +2,7 @@
 #include <ctime>
 #include <chrono>
 
-#define N 100 //по сути переменная, позволяющая одной строкой управлять размером массива
+#define N 100 //позволяет как бы переменно задавать размер массивов, так как компилятор не дает использовать переменные, кроме констант
 bool wasArrSort; /*нужна, чтобы знать, отсортирован ли массив arrSort, если пользователь перестановкой изменил его,
 				 то перед большинством функций ему предложат пересортировать массив, иначе функция не выплнится*/
 
@@ -16,6 +16,10 @@ void userFindLess(int*); //пользователь вводит элемент,
 void userFindMore(int*); //пользователь вводит элемент, после чего выводится кол-во элементов больше этого числа
 void userSwap(int*); //пользователь вводит пару индексов, после чего в отсортированном массиве соответсвующие элементы меняются местами
 void userFindNumber(int*); //пользователь вводит число, после чего находится соответствующий элемент бинарным поиском и простым перебором
+
+int genQuicksort(int*, int, int, int); //функция для сортировки с выводом коментариев
+void generator(); //функция для доп задания 10: генератор заданий
+void variant(int*); //функция для доп задания 5: работа с четными числами
 
 
 int main()
@@ -41,7 +45,9 @@ int main()
 				"m: найти индексы среднего элемента\n" \
 				"w: поменять местам пару элементов в массиве\n" \
 				"f: найти индекс элемента, равного вашему числу\n" \
-				"e: завершить работу программы";
+				"e: завершить работу программы\n" \
+				"g: доп задание 10\n" \
+				"v: доп задание 5\n";
 			break;
 		case 's':
 			newArr(arrUnsort, arrSort);
@@ -63,6 +69,12 @@ int main()
 			break;
 		case'e':
 			flag = false;
+			break;
+		case'g':
+			generator();
+			break;
+		case'v':
+			variant(arrSort);
 			break;
 		default:
 			std::cout << "Вы указали несуществующую команду";
@@ -397,4 +409,121 @@ void userSwap(int* arr) {
 	for (int i = 0; i < N; i++)
 		std::cout << arr[i] << ' ';
 	std::cout << "\n\n";
+}
+
+//дополнительное задание 10 вариант
+void generator() {
+	int arr[16];
+	std::cout << "Исходный массив {";
+	for (int i = 0; i < 15; i++)
+	{
+		arr[i] = (std::rand() % 20);
+		std::cout << arr[i] << ", ";
+	}
+	arr[15] = (std::rand() % 20);
+	std::cout << arr[15] << "}; быстрая сортировка через опроное число в конце массива\n";
+	genQuicksort(arr, 0, 15, 0);
+	std::cout << "Итоговый отсортированный массив {";
+	for (int i = 0;i < 16;i++)
+		std::cout << arr[i] << ", ";
+	std::cout << arr[15] << "}\n\n";
+}
+
+int genQuicksort(int* arr, int  begin, int end, int point = 0)
+{
+	point++;
+	int f = begin, l = end, mid = arr[end], buf;
+	std::cout << point << ") Опорное = " << mid << "; {";
+	for (int i = begin;i < end;i++)
+		std::cout << arr[i] << ", ";
+	std::cout << arr[end] << "} -> ";
+	arr[l] = -1;
+	while (arr[f]>=0) {
+		if (arr[f] >= mid) {
+			buf = arr[l];
+			arr[l] = arr[f];
+			l--;
+			arr[f] = arr[l];
+			arr[l] = buf;
+		}else
+			f++;
+	}
+	arr[l] = mid;
+	std::cout << '{';
+	for (int i = begin;i < end;i++)
+		std::cout << arr[i] << ", ";
+	std::cout << arr[end] << "}\n";
+	if (begin < f-1) point=genQuicksort(arr, begin, f-1,point);
+	if (f+1 < end) point=genQuicksort(arr, f+1, end, point);
+	return point;
+}
+
+//дополнительное задание 5 вариант
+void variant(int* arr) {
+	wasArrSort = false;
+	int a;
+	std::cout << "Введите число, на которое нужно уменьшить четные элементы массива\n";
+	while (true) {
+		std::cin >> a;
+		if (std::cin)
+			break;
+		std::cout << "Вы неправильно ввели число. Повторите ввод\n";
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
+	}
+	for (int i = 0; i < N; i += 2)
+		arr[i] -= a;
+	std::cout << "Полученный массив: ";
+	for (int i = 0; i < N; i++)
+		std::cout << arr[i] << ' ';
+	std::cout << '\n';
+	std::cout << "Четные элементы массива будут умножены на " << (a = std::rand() % 9) << '\n';
+	for (int i = 0; i < N; i += 2)
+		arr[i] *= a;
+	std::cout << "Полученный массив: ";
+	for (int i = 0; i < N; i++)
+		std::cout << arr[i] << ' ';
+	std::cout << "\n";
+	int odd = 0, even = 0;
+	for (int i = 0;i < N;i += 2) {
+		if (!(arr[i] % 2))
+			even++;
+	}
+	for (int i = 1;i < N;i += 2) {
+		if (arr[i] % 2)
+			odd++;
+	}
+	std::cout << "Четных элементов с четными значениями: " << even << ";\n" \
+		"Нечетных элементов с нечетными значениями: " << odd << '\n';
+	int count[9] = { 100,0,0,0,0,0,0,0,0 };
+	for (int i = 0;i < N;i++) {
+		if (!(arr[i] % 2)) {
+			count[1]++;
+			if ((arr[i] % 4) == 0) {
+				count[3]++;
+				if ((arr[i] % 8) == 0) {
+					count[7]++;
+				}
+			}
+			if ((arr[i] % 3) == 0)
+				count[5]++;
+			if ((arr[i] % 5) == 0)
+				count[9]++;
+		}
+		else
+			if ((arr[i] % 3) == 0) {
+				count[2]++;
+				if ((arr[i] % 9) == 0) {
+					count[8]++;
+				}
+			}
+			else
+				if ((arr[i] % 5) == 0)
+					count[4]++;
+				else
+					if ((arr[i] % 7) == 0)
+						count[6]++;
+	}
+	for (int i = 0;i < 9;i++) 
+		std::cout << "Элементов кратных " << (i + 1) << ": " << count[i] << '\n';
 }
