@@ -5,18 +5,18 @@
 #include <ctime>
 #include <windows.h>
 
-#define N 8 //размер матрицы
-void printMatrix(int[N][N]); //метод, для печати матриц
-void makeMatrixA(int[N][N], int*[N*N]); //методы для создания матриц
+#define N 8 //СЂР°Р·РјРµСЂ РјР°С‚СЂРёС†
+void printMatrix(int [N][N]); //РјРµС‚РѕРґ, РґР»СЏ РїРµС‡Р°С‚Рё РјР°С‚СЂРёС†
+void makeMatrixA(int[N][N], int*[N*N]); //РјРµС‚РѕРґС‹ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РјР°С‚СЂРёС†
 void makeMatrixB(int[N][N], int*[N*N]);
-void changeMatrixA(int[N][N]); //методы для перестановки элементов матрицы
+void changeMatrixA(int[N][N]); //РјРµС‚РѕРґС‹ РґР»СЏ РїРµСЂРµСЃС‚Р°РЅРѕРІРєРё СЌР»РµРјРµРЅС‚РѕРІ РјР°С‚СЂРёС†С‹
 void changeMatrixB(int[N][N]);
 void changeMatrixC(int[N][N]);
 void changeMatrixD(int[N][N]);
-void quicksort(int**, int, int); //сортировка матрицы из прошлой работы, работает через порядок создания
-void userChangeMatrix(int[N][N]); //уведичение, уменьшение, умножение или деление матрицы на число пользователя
+void quicksort(int**, int, int); //СЃРѕСЂС‚РёСЂРѕРІРєР° РјР°С‚СЂРёС†С‹ РёР· РїСЂРѕС€Р»РѕР№ СЂР°Р±РѕС‚С‹, СЂР°Р±РѕС‚Р°РµС‚ С‡РµСЂРµР· РїРѕСЂСЏРґРѕРє СЃРѕР·РґР°РЅРёСЏ
+void userChangeMatrix(int[N][N]); //СѓРІРµРґРёС‡РµРЅРёРµ, СѓРјРµРЅСЊС€РµРЅРёРµ, СѓРјРЅРѕР¶РµРЅРёРµ РёР»Рё РґРµР»РµРЅРёРµ РјР°С‚СЂРёС†С‹ РЅР° С‡РёСЃР»Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 
-extern int maxValue; //число, для ровного вывода матрицы
+int maxValue; //С‡РёСЃР»Рѕ, РґР»СЏ СЂРѕРІРЅРѕРіРѕ РІС‹РІРѕРґР° РјР°С‚СЂРёС†С‹
 
 int practicalWork3();
 #endif
