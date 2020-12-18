@@ -5,7 +5,7 @@
 #include <ctime>
 #include <windows.h>
 
-#define N 8 //размер матриц
+#define N 8 //размер матрицы
 void printMatrix(int[N][N]); //метод, для печати матриц
 void makeMatrixA(int[N][N], int*[N*N]); //методы для создания матриц
 void makeMatrixB(int[N][N], int*[N*N]);
