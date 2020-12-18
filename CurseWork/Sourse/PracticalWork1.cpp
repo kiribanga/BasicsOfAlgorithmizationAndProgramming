@@ -25,17 +25,39 @@ int practicalWork1()
 
 	//пункт 2 задания, для быстрой сборки числа считываются клавиатуры
 	std::cout << "\nВведите целое число\n";
-	std::cin >> userNumberI;
+	while (true) {
+		std::cin >> userNumberI;
+		if (std::cin)
+			break;
+		std::cout << "Вы неправильно ввели число. Повторите ввод\n";
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
+	}
+	
 	printMemoryShowing(userNumberI);
 
 	//пункт 3 задания, для быстрой сборки числа считываются клавиатуры
 	std::cout << "\nВведите вещественное число типа float\n";
-	std::cin >> userNumberF;
+	while (true) {
+		std::cin >> userNumberF;
+		if (std::cin)
+			break;
+		std::cout << "Вы неправильно ввели число. Повторите ввод\n";
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
+	}
 	printMemoryShowing(userNumberF);
 
 	//пункт 4 задания, для быстрой сборки числа считываются клавиатуры
 	std::cout << "\nВведите вещественное число типа double\n";
-	std::cin >> userNumberD;
+	while (true) {
+		std::cin >> userNumberD;
+		if (std::cin)
+			break;
+		std::cout << "Вы неправильно ввели число. Повторите ввод\n";
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
+	}
 	printMemoryShowing(userNumberD);
 
 	system("pause");
