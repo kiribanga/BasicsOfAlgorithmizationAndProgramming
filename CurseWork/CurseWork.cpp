@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include "PracticalWork1.h"
 #include "PracticalWork2.h"
 #include "PracticalWork3.h"
 #include "PracticalWork4.h"
