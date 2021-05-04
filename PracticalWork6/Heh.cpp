@@ -64,6 +64,8 @@ int getIndex(doubleList*, unsigned);
 void show(singleList*);
 void show(doubleList*);
 
+void pracktic_2_10(); // функция, для доп задания
+
 int main()
 {
 	setlocale(LC_ALL, "Russian"); //для корректного вывода текста
@@ -1052,7 +1054,7 @@ int getEquels(singleList *point, int num) {
 		if (point->data == num) {
 			end = std::chrono::system_clock::now();
 			listTime = end - start;
-			std::cout << "Поиск элемента в односвязном списке заняло " << listTime.count() << " сек.\n\n";
+			std::cout << "Поиск элемента в односвязном списке заняло " << listTime.count() << " сек.\n";
 			return i;
 		}
 		point = point->tail;
@@ -1060,7 +1062,7 @@ int getEquels(singleList *point, int num) {
 	}
 	end = std::chrono::system_clock::now();
 	listTime = end - start;
-	std::cout << "Безуспешный поиск элемента в односвязном списке заняло " << listTime.count() << " сек.\n\n";
+	std::cout << "Безуспешный поиск элемента в односвязном списке заняло " << listTime.count() << " сек.\n";
 	return -1;
 }
 
@@ -1073,7 +1075,7 @@ int getEquels(doubleList *point, int num) {
 		if (point->data == num) {
 			end = std::chrono::system_clock::now();
 			listTime = end - start;
-			std::cout << "Поиск элемента в двусвязном списке заняло " << listTime.count() << " сек.\n\n";
+			std::cout << "Поиск элемента в двусвязном списке заняло " << listTime.count() << " сек.\n";
 			return i;
 		}
 		point = point->tail;
@@ -1081,7 +1083,7 @@ int getEquels(doubleList *point, int num) {
 	}
 	end = std::chrono::system_clock::now();
 	listTime = end - start;
-	std::cout << "Безуспешный поиск элемента в двусвязном списке заняло " << listTime.count() << " сек.\n\n";
+	std::cout << "Безуспешный поиск элемента в двусвязном списке заняло " << listTime.count() << " сек.\n+";
 	return -1;
 }
 
@@ -1128,3 +1130,37 @@ void show(doubleList *point) {
 	}
 	std::cout << '\n';
 }
+/*
+void pracktic_2_10() {
+	int N = 16
+	doubleList *list = 0;
+	std::ofstream test, reply;
+	reply.open("reply.txt");
+	test.open("test.txt");
+	if ((test.is_open()) && (reply.is_open())) {
+
+		test << "Задание 1) в двусвязанном списке, состоящем из элементов:\n"
+		list = new doubleList{ std::rand() % 100, 0, 0 };
+		for (int i = 1; i < N; i++) {
+			list->tail = new doubleList{ std::rand() % 100, list, 0 };
+			list = list->tail;
+		}
+		while (list->head)
+			list = list->head;
+		;
+		while (list->tail) {
+			test << list->data << ' ';
+			list = list->tail;
+		}
+		test << list->data<<",\n";
+		while(list->head)
+			list = list->head;
+
+		remove(&list);
+	}
+	else {
+		std::cout << "Файл не доступен\n";
+	}
+	test.close();
+	reply.close();
+}*/
