@@ -16,28 +16,87 @@ struct Student
 	std::string time; // строка, генерируемая методом ctime при любом изменении экземпляра структуры
 };
 
-void save(std::vector<Student> *);
-void addNew(std::vector<Student> *);
-void fromFile(std::vector<Student> *);
-void showStudent(Student *);
-void showAll(std::vector<Student> *);
-void showGroup(std::vector<Student> *);
-void showGreat(std::vector<Student> *);
-void showSuperGreat(std::vector<Student> *);
-void showGenderCount(std::vector<Student> *);
-void showGrant(std::vector<Student> *);
-void showAntiGrant(std::vector<Student> *);
-void showNedoGrant(std::vector<Student> *);
-void showCount(std::vector<Student> *);
-void change(std::vector<Student> *);
-void change(Student *);
+void save(std::vector<Student> *); // сохраняет список в файл
+void addNew(std::vector<Student> *); // добавляет новый элемент
+void fromFile(std::vector<Student> *); // загружает список студентов из файла
+void showStudent(Student *); // выводит данные о студенте, нужна для других функциях
+void showAll(std::vector<Student> *); // вывод всех студентов
+void showGroup(std::vector<Student> *); // выводит студентов определенной группы
+void showGreat(std::vector<Student> *); // выводит данные лучших студентов
+void showSuperGreat(std::vector<Student> *); // выводит данные об отличниках
+void showGenderCount(std::vector<Student> *); // выводит количество студентов мужского и женского пола
+void showGrant(std::vector<Student> *); // выводит данные о студентах, получающих стипендию
+void showAntiGrant(std::vector<Student> *); // выводит данные о студентах без стипендии
+void showNedoGrant(std::vector<Student> *); // выводит данные о хорошистах
+void showCount(std::vector<Student> *); // выводит данные о студентах по их номеру в группе
+void change(std::vector<Student> *); // спрашивает номер студента, и меняет его запись
+void change(Student *); // меняет данные конкретного студента
 
 int main() {
 	setlocale(LC_ALL, "Russian"); //для корректного вывода руских букв;
 
 	std::vector<Student> students;
 	fromFile(&students);
-	showSuperGreat(&students);
+	char answer;
+	bool flag = true;
+	while (flag) {
+		std::cout << "Выберите команду: \n" \
+			"n: создание новой записи \n" \
+			"c: изменение записи \n" \
+			"v: вывести данные о всех студентах \n" \
+			"w: вывести данные о студантах группы \n" \
+			"h: вывести список самых успешных студентов \n" \
+			"g: вывести количество студентов мужского и женского пола \n" \
+			"s: вывести данные о студентов, получающих стипендию \n" \
+			"i: вывести данные о студентах, не получающих стипендию \n" \
+			"b: вывести данные о хорошистах \n" \
+			"a: вывести данные об отличниках \n" \
+			"d: вывести данные о студентах по номеру в группе \n" \
+			"e: завершить работу программы \n";
+		std::cin >> answer;
+		std::cin.ignore(INT_MAX, '\n');
+		switch (answer) {
+		case 'n':
+			addNew(&students);
+			break;
+		case 'c':
+			change(&students);
+			break;
+		case 'v':
+			showAll(&students);
+			break;
+		case 'w':
+			showGroup(&students);
+			break;
+		case 'h':
+			showGreat(&students);
+			break;
+		case 'g':
+			showGenderCount(&students);
+			break;
+		case 's':
+			showGrant(&students);
+			break;
+		case 'i':
+			showAntiGrant(&students);
+			break;
+		case 'b':
+			showNedoGrant(&students);
+			break;
+		case 'a':
+			showSuperGreat(&students);
+			break;
+		case 'd':
+			showCount(&students);
+			break;
+		case 'e':
+			flag = false;
+			break;
+		default:
+			std::cout << "Вы ввели неправильную команду \n";
+			break;			
+		}
+	}
 
 	save(&students);
 
